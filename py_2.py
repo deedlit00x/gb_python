@@ -41,7 +41,6 @@
 #             res.append(f'"+{int(i):02d}"')
 #         else:
 #             res.append(i)
-#             res.append('"')
 #     else:
 #         res.append(my_list[el])
 
