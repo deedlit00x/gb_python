@@ -5,6 +5,24 @@
 # >>> num_translate("eight")
 # "восемь"
 
+def num_translate(arg1):
+    numbers = {
+    "one" : 'один',
+    "two" : 'два',
+    "three" : 'три',
+    "four" : 'четыре',
+    "five" : 'пять',
+    "six" : 'шесть',
+    "seven" : 'семь',
+    "eight" : 'восемь',
+    "nine" : 'девять',
+    "ten" : 'десять',
+    }
+    result = numbers.get(arg1) if arg1 in numbers else None
+    return result
+
+print(num_translate('six'))
+
 # Если перевод сделать невозможно, вернуть None. Подумайте, как и где лучше хранить информацию, 
 # необходимую для перевода: какой тип данных выбрать, в теле функции или снаружи.
 
@@ -16,6 +34,27 @@
 # >>> num_translate_adv("two")
 # "два"
 
+def num_translate_adv(arg1):
+    flag = True if arg1.istitle() else False
+    tmp_key = arg1.lower()
+    numbers = {
+    "one" : 'один',
+    "two" : 'два',
+    "three" : 'три',
+    "four" : 'четыре',
+    "five" : 'пять',
+    "six" : 'шесть',
+    "seven" : 'семь',
+    "eight" : 'восемь',
+    "nine" : 'девять',
+    "ten" : 'десять',
+    }
+    tmp = numbers.get(tmp_key) if tmp_key in numbers else None
+    result = tmp.title() if flag == True else tmp
+    return result
+
+print(num_translate_adv('Six'))
+
 # 3. Написать функцию thesaurus(), принимающую в качестве аргументов имена сотрудников и возвращающую словарь, в котором ключи — 
 # первые буквы имён, а значения — списки, содержащие имена, начинающиеся с соответствующей буквы. Например:
 
@@ -24,6 +63,20 @@
 #     "И": ["Иван", "Илья"], 
 #     "М": ["Мария"], "П": ["Петр"]
 # }
+
+def thesaurus(*args):
+    members = { }
+    tmp = list(args)
+    tmp.sort()
+    for el in tmp:
+        key = el[0]
+        if key not in members:
+            members[key] = []
+        members[key].append(el)
+    print(members)
+    
+thesaurus("Иван", "Мария", "Петр", "Илья")
+
 
 # Подумайте: полезен ли будет вам оператор распаковки? Как поступить, если потребуется сортировка по ключам? 
 # Можно ли использовать словарь в этом случае?
@@ -44,6 +97,7 @@
 #     }
 # }
 
+
 # Как поступить, если потребуется сортировка по ключам?
 # 5. Реализовать функцию get_jokes(), возвращающую n шуток, сформированных из трех случайных слов, взятых из трёх списков 
 # (по одному из каждого):
@@ -54,6 +108,26 @@
 
 #         Например:
 
+def get_jokes(jokes = 1):
+    import random
+    res = ''
+    res_dict = []
+    nouns = ["автомобиль", "лес", "огонь", "город", "дом"]
+    adverbs = ["сегодня", "вчера", "завтра", "позавчера", "ночью"]
+    adjectives = ["веселый", "яркий", "зеленый", "утопичный", "мягкий"]
+    i = 0
+    while i != jokes:
+        tmp = []
+        tmp.append(nouns.pop(random.randint(1, jokes)))
+        tmp.append(adverbs.pop(random.randint(1, jokes)))
+        tmp.append(adjectives.pop(random.randint(1, jokes)))
+        i += 1
+        tmp_el = ' '.join(tmp)
+        res = f'{tmp_el}'
+        res_dict += [res]
+    return res_dict
+
+print(get_jokes(2))
 # >>> get_jokes(2)
 # ["лес завтра зеленый", "город вчера веселый"]
 
@@ -61,3 +135,10 @@
 # Сможете ли вы добавить еще один аргумент — флаг, разрешающий или запрещающий повторы слов в шутках 
 # (когда каждое слово можно использовать только в одной шутке)? Сможете ли вы сделать аргументы именованными?
 # Задачи со * предназначены для продвинутых учеников, которым мало сделать обычное ДЗ.
+
+
+
+# ------------------------------------------------
+
+# pract:
+
