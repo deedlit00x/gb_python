@@ -72,6 +72,16 @@ for el in prof:
 # Задачи со * предназначены для продвинутых учеников, которым мало сделать обычное задание.
 
 
+input_list = [57.8, 46.51, 7, 97, 44.5, 58.76, 9]
+
+end_word: str = ", "
+
+for i, num in enumerate(input_list):
+    fix_price = str(f"{float(num):.2f}").split(".")
+    if i == len(input_list) - 1:
+        end_word = "\n"
+
+    print(f"{fix_price[0]} руб {fix_price[1]} коп", end=end_word)
 # ------------------------------------------------
 
 # pract:
